@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Phantom
+  - Flashlight
+  - PlayerDetect
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - Items
+  - Monsters
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2749661721
+    locked: 0
+  - name: Traps
+    uniqueID: 1152195057
+    locked: 0
+  - name: Ground
+    uniqueID: 1219596405
+    locked: 0
+  - name: Items
+    uniqueID: 1935308795
+    locked: 0
+  - name: Monsters
+    uniqueID: 850311143
+    locked: 0
+  - name: Player
+    uniqueID: 3747949377
+    locked: 0
