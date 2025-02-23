@@ -8,8 +8,10 @@ public class LootableCabinetFactory : MonoBehaviour
     public static LootableCabinetFactory Instance { get; private set; }
 
     [SerializeField] List<LootableCabinet> _lootableCabinetPrefabs;
-    [SerializeField] int minCabinets = 3;
-    [SerializeField] int maxCabinets = 6;
+    [SerializeField] int _minCabinets = 3;
+    [SerializeField] int _maxCabinets = 6;
+    [SerializeField] private int _cabinetWidth = 15;
+    [SerializeField] private int _cabinetHeight = 3;
 
     private ObjectPool<GameObject> _pool;
     private List<GameObject> _activeCabinets = new List<GameObject>(); // Track spawned cabinets
@@ -59,19 +61,22 @@ public class LootableCabinetFactory : MonoBehaviour
 
     public void SpawnCabinets()
     {
-        int numCabinets = Random.Range(minCabinets, maxCabinets + 1);
+        int numCabinets = Random.Range(_minCabinets, _maxCabinets + 1);
 
-        for (int i = 0; i < numCabinets; i++)
+        for (int i = 1; i <= numCabinets; i++)
         {
             float randomX = Random.Range(-50f, 30f); // Random X position between -50 and 30
             float randomY = 1.5f; // Fixed Y position (adjust as needed)
 
             Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
 
-            GameObject cabinet = _pool.Get();
-            cabinet.transform.position = spawnPosition;
-            cabinet.GetComponent<LootableCabinet>().AssignRandomItem(); // Assigns medkit, battery, or nothing
-            _activeCabinets.Add(cabinet);
+            if (!IsPositionOccupided(spawnPosition))
+            {
+                GameObject cabinet = _pool.Get();
+                cabinet.transform.position = spawnPosition;
+                cabinet.GetComponent<LootableCabinet>().AssignRandomItem(); // Assigns medkit, battery, or nothing
+                _activeCabinets.Add(cabinet);
+            }
         }
     }
 
@@ -101,5 +106,11 @@ public class LootableCabinetFactory : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded; // Unsubscribe event to prevent memory leaks
+    }
+
+    private bool IsPositionOccupided(Vector3 position)
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(position, new Vector2(_cabinetWidth, _cabinetHeight), 0f);
+        return colliders.Length > 0;
     }
 }
