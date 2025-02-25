@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image _batteryBorder;
     [SerializeField] private Image _batteryBar;
+    [SerializeField] private Image _transitionImage;
     private Player _player;
     private float _flashlightBatteryAmount;
     private float _flashingSpeed = 5f;
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
     }
 
     private void OnEnable()
@@ -45,7 +47,6 @@ public class UIManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Scene loaded: " + scene.name);
         // Re-setup buttons after scene load
         SetupInventoryButtons();
 

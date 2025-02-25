@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class Cabinet : MonoBehaviour
+public class HidingCabinet : MonoBehaviour
 {
     private bool _isPlayerColliding;
     private Player _player;
     private Animator _animator;
+    private System.Action<GameObject> _returnToPool;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -28,6 +29,11 @@ public class Cabinet : MonoBehaviour
         {
             _isPlayerColliding = false;
         }
+    }
+
+    public void Initialize(System.Action<GameObject> poolReturn)
+    {
+        _returnToPool = poolReturn;
     }
 
     private void Start()

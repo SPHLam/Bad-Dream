@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4715615827455515943}
   - component: {fileID: 6081558586072319380}
   - component: {fileID: 5437027419140342989}
+  - component: {fileID: 8561281111961544300}
   m_Layer: 7
   m_Name: Lootable2
   m_TagString: Untagged
@@ -173,3 +174,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _medkitSprite: {fileID: 21300000, guid: 701213e89c066844aadc351980d3709c, type: 3}
   _batterySprite: {fileID: 21300000, guid: 05b67f71aee6d9743ab7d07ac323aded, type: 3}
+--- !u!95 &8561281111961544300
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2776171118031265291}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 529cec512cf6cc44abdcda6e33d9fc3e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

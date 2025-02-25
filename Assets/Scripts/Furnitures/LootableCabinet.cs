@@ -7,6 +7,12 @@ public class LootableCabinet : MonoBehaviour
     private ILootableItem itemEffect;
     private System.Action<GameObject> _returnToPool;
     private bool _isPlayerColliding;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     public void AssignRandomItem()
     {
@@ -54,6 +60,7 @@ public class LootableCabinet : MonoBehaviour
     {
         if (_isPlayerColliding && Input.GetKeyDown(KeyCode.E))
         {
+            _animator.SetBool("isOpen", true);
             if (itemEffect != null)
             {
                 itemEffect.AddToInventory();
