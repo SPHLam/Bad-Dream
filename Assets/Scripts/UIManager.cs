@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image _batteryBorder;
     [SerializeField] private Image _batteryBar;
     [SerializeField] private Image _transitionImage;
+    [SerializeField] private float _fadeDuration = 1f;
     private Player _player;
     private float _flashlightBatteryAmount;
     private float _flashingSpeed = 5f;
@@ -47,6 +49,7 @@ public class UIManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        StartCoroutine(FadeOut());
         // Re-setup buttons after scene load
         SetupInventoryButtons();
 
@@ -166,5 +169,32 @@ public class UIManager : MonoBehaviour
                 countText.text = "";
             }
         }
+    }
+
+    private IEnumerator Fade(float startAlpha, float endAlpha, float duration)
+    {
+        float elapsedTime = 0f;
+        Color color = _transitionImage.color;
+
+        while (elapsedTime < _fadeDuration)
+        {
+            color.a = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            _transitionImage.color = color;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        color.a = endAlpha;
+        _transitionImage.color = color;
+    }
+
+    public IEnumerator FadeIn()
+    {
+        yield return Fade(0f, 1f, _fadeDuration);
+    }
+
+    public IEnumerator FadeOut()
+    {
+        yield return Fade(1f, 0f, _fadeDuration);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -55,6 +56,12 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextRoom()
     {
+        StartCoroutine(LoadTransition());
+    }
+
+    private IEnumerator LoadTransition()
+    {
+        yield return StartCoroutine(UIManager.Instance.FadeIn());
         int roomCount = SceneManager.sceneCountInBuildSettings;
         int randomRoomIndex = Random.Range(0, roomCount - 1);
         SceneManager.LoadScene("SampleScene " + randomRoomIndex, LoadSceneMode.Single);
